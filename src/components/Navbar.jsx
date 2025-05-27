@@ -1,15 +1,27 @@
-import { Link } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import CartDropdown from './CartDropdown'
-import logo from '../assets/logo.png' 
+import logo from '../assets/logo.png'
+
 export default function Navbar({ cartItems, onRemove, onIncrease, onDecrease }) {
   const getTotalQuantity = () => cartItems.reduce((sum, item) => sum + item.quantity, 0)
 
   return (
     <nav className="bg-stone-700 text-white px-6 py-4 flex justify-between items-center shadow-md">
-      <Link to="/" className="text-xl text-white font-bold"><img className="h-12 w-auto" src={logo} alt="" /></Link>
-      <div className="flex items-center space-x-6">
-        <Link to="/protected" className="bg-white text-black rounded-2xl text-decoration-none  : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium">Login</Link>
+      <Link to="/" className="text-xl font-bold">
+        <img className="h-12 w-auto" src={logo} alt="Logo" />
+      </Link>
+
+      <div className="flex items-center space-x-6 text-white">
+        <NavLink
+          to="/protected"
+          className={({ isActive }) =>
+           `rounded-2xl px-4 py-2 text-sm font-medium text-decoration-none ${
+      isActive ? 'bg-white text-black' : 'text-white hover:bg-gray-600'
+            }`
+          }
+        >
+          Login
+        </NavLink>
 
         <div className="relative group">
           <button className="relative">
