@@ -23,7 +23,6 @@ export default function Login() {
 
   return (
     <div className="container mt-5">
-      <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto bg-white shadow-md rounded p-6 mt-10">
   <h2 className="text-2xl font-bold mb-4">Iniciar Sesión</h2>
   <div>
