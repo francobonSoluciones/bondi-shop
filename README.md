@@ -6,7 +6,7 @@ Realizado con react, vite, javascript, Tailwind CSS
 URL: "https://bondi-shop.vercel.app/"
 
 LOGIN
-USUARIO: ADMIN
+USUARIO: admin
 CONTRASEÑA: 1234
 
 ALUMNO: BONDIONI FRANCO TOMAS
