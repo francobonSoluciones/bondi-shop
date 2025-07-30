@@ -1,83 +1,85 @@
-import { Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
-import ProductDetail from './pages/ProductDetail'
-import Login from './pages/Login'
-import Navbar from './components/Navbar'
-import ProtectedRoute from './components/ProtectedRoute'
-import { useState } from 'react'
-import ProtectedPage from './pages/ProtectedPage'
-import Footer from './components/Footer'
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import ProductsGallery from "./pages/ProductsGallery";
+import Contacts from "./pages/Contacts";
+import NotFound from "./pages/NotFound";
+import { CartProvider } from "./context/CartContext";
+import { AuthProvider } from "./context/AuthContext";
+import Login from "./pages/Login";
+import AddProductPage from "./pages/AddProductPage";
+import Admin from "./pages/Admin";
+import PrivateRoute from "./components/PrivateRoute";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
-  const [cart, setCart] = useState([])
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
+  const fetchProducts = () => {
+    setLoading(true);
+    fetch("https://686326ce88359a373e94065b.mockapi.io/products")
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+        setError(true);
+        setLoading(false);
+      });
+  };
 
-  const handleRemoveFromCart = (id, size) => {
-    setCart((prev) => prev.filter((item) => !(item.id === id && item.size === size)))
-  }
-  
-  const handleIncreaseQty = (id, size) => {
-    setCart((prev) =>
-      prev.map((item) =>
-        item.id === id && item.size === size
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      )
-    )
-  }
-  
-  const handleDecreaseQty = (id, size) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id && item.size === size
-            ? { ...item, quantity: item.quantity - 1 }
-            : item
-        )
-        .filter((item) => item.quantity > 0)
-    )
-  }
-  const handleAddToCart = (product) => {
-    setCart(prevCart => {
-      const existing = prevCart.find(item => item.id === product.id && item.size === product.size)
-      if (existing) {
-        return prevCart.map(item =>
-          item.id === product.id && item.size === product.size
-            ? { ...item, quantity: item.quantity + product.quantity }
-            : item
-        )
-      }
-      return [...prevCart, product]
-    })
-  }
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
-    <>
-<Navbar
-  cartItems={cart}
-  onRemove={handleRemoveFromCart}
-  onIncrease={handleIncreaseQty}
-  onDecrease={handleDecreaseQty}
-/>     
-
-<Routes>
-  <Route path="/" element={<Home onAdd={handleAddToCart} />} />
-  <Route path="/product/:id" element={<ProductDetail onAdd={handleAddToCart} />} />
-  <Route path="/login" element={<Login />} />
-  <Route
-    path="/protected"
-    element={
-      <ProtectedRoute>
-        <ProtectedPage />
-      </ProtectedRoute>
-    }
-  />
-  <Route
-  path="/product/:id"
-  element={<ProductDetail onAdd={handleAddToCart} />}
-/>
-</Routes>
-<Footer/>
-    </>
-  )
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home products={products} loading={loading} error={error} />
+              }
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/products"
+              element={
+                <ProductsGallery
+                  products={products}
+                  loading={loading}
+                  error={error}
+                  refetchProducts={fetchProducts} // 👈 agregado
+                />
+              }
+            />
+            <Route path="/contact" element={<Contacts />} />
+            <Route path="/add-product" element={<AddProductPage />} />
+            <Route
+              path="/admin"
+              element={
+                <PrivateRoute onlyAdmin>
+                  <Admin />
+                </PrivateRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+        <ToastContainer position="top-right" autoClose={3000} />
+      </CartProvider>
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;

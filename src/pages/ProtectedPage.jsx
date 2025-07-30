@@ -3,7 +3,7 @@ import NotFound from "../components/NotFound";
 
 
 export default function ProtectedPage() {
-    return (
-     <NotFound/>
-    )
-  }
+  return (
+    <NotFound />
+  )
+}
