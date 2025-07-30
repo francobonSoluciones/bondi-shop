@@ -1,8 +1,9 @@
 #root {
-  max-width: 1280px;
+  /*max-width: 1280px; para maximo ancho de pantalla*/
   margin: 0 auto;
-  padding: 2rem;
+
   text-align: center;
+  background-color: rgb(245, 245, 236);
 }
 
 
@@ -10,8 +11,8 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-

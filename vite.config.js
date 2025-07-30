@@ -7,6 +7,5 @@ export default defineConfig({
   plugins: [react(),
     tailwindcss(),
   ],
-   base: 'https://FrancoBondioni.github.io/bondi-shop',
 
 })

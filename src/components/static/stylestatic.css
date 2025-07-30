@@ -1,0 +1,119 @@
+/* Estilos para Sticky Footer */
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+nav {
+    background-color: #333;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    align-items: center;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btnCart {
+    background-color: transparent;
+    border: none;
+}
+
+.fa-cart-shopping {
+    color: red;
+}
+
+.spinner {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 40px auto;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Estilos para las tarjetas de producto */
+.product-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.product-card-img-container {
+    overflow: hidden;
+    height: 200px;
+    position: relative;
+}
+
+.product-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-card-img {
+    transform: scale(1.05);
+}
+
+.admin-buttons-overlay {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.product-card:hover .admin-buttons-overlay {
+    opacity: 1;
+}
+.NavLink {
+   background-color: tomato;
+}
