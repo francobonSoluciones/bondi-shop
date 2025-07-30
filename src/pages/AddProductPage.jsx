@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../components/static/Header";
 import Footer from "../components/static/Footer";
-import AddProduct from "../components/AddProduct";
+import AddProduct from "../components/Addproduct";
 
 const AddProductPage = () => (
   <>
