@@ -1,4 +1,4 @@
-Pre-Entrega de Proyecto
+Entrega de Proyecto
 Realizado con react, vite, javascript, Tailwind CSS
 
 "TIENDA BONDI SHOP"
