@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/static/Header";
 import Footer from "../components/static/Footer";
-import AddProduct from "../components/AddProduct";
+import AddProduct from "../components/Addproduct";
 import ProductList from "../components/ProductList";
 import EditProductForm from "../components/EditProductForm";
 import { toast } from "react-toastify";
