@@ -35,7 +35,7 @@ const AddProduct = ({ onProductAdded }) => {
     setLoadingAction(true);
     const validationError = validate();
     if (validationError) {
-      toast.error(validationError); // Muestra el error con Toastify
+      toast.error(validationError);
       setLoadingAction(false);
       return;
     }
